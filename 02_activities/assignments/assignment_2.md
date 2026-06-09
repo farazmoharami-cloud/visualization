@@ -13,41 +13,47 @@
 **Good visualization**
 *[Official World Happiness Report 2021 Ranking](https://public.tableau.com/app/profile/worldhappinessreport/viz/Figure2_1_16157724652500/2021WorldHappinessReport), published on the World Happiness Report’s Tableau Public profile.*
 
-    I classify this as a good visualization because its design makes the main message clear while still allowing the viewer to explore additional detail.
+```
+I classify this as a good visualization because its design makes the main message clear while still allowing the viewer to explore additional detail.
 
-    **The first reason** is its clear organization and accurate visual encoding. The chart presents countries as horizontal stacked bars, ordered from the highest to the lowest life-evaluation score. This ordering immediately communicates the ranking and allows the viewer to identify the highest- and lowest-scoring countries without needing to read every number. Because the bars share a common baseline, their total lengths can be compared accurately. Research on graphical perception shows that viewers generally compare position and length more accurately than area, angle, or volume, which supports the effectiveness of this design (Cleveland & McGill, 1984; Heer & Bostock, 2010).
+**The first reason** is its clear organization and accurate visual encoding. The chart presents countries as horizontal stacked bars, ordered from the highest to the lowest life-evaluation score. This ordering immediately communicates the ranking and allows the viewer to identify the highest- and lowest-scoring countries without needing to read every number. Because the bars share a common baseline, their total lengths can be compared accurately. Research on graphical perception shows that viewers generally compare position and length more accurately than area, angle, or volume, which supports the effectiveness of this design.
 
-    **The second reason** is the chart’s readable layout and effective use of context. The horizontal orientation is a major strength. Country names can be written clearly beside the bars, whereas a vertical bar chart would likely require rotated or abbreviated labels. The title and explanatory text also provide important context by identifying the topic, reporting year, and meaning of the overall score. This allows the visualization to be interpreted without requiring extensive outside explanation.
+**The second reason** is the chart’s readable layout and effective use of context. The horizontal orientation is a major strength. Country names can be written clearly beside the bars, whereas a vertical bar chart would likely require rotated or abbreviated labels. The title and explanatory text also provide important context by identifying the topic, reporting year, and meaning of the overall score. This allows the visualization to be interpreted without requiring extensive outside explanation.
 
-    **The third reason** is that the stacked sections add a useful second level of information. In addition to showing each country’s overall life-evaluation score, the chart separates the estimated contributions of factors such as social support, healthy life expectancy, freedom, generosity, and perceptions of corruption. The consistent use of colour across countries enables viewers to see that the same factor is represented in the same way throughout the chart. This supports comparison of both the total score and its components. The visualization therefore follows the useful principle of presenting an overview first and then allowing the audience to examine details.
+**The third reason** is that the stacked sections add a useful second level of information. In addition to showing each country’s overall life-evaluation score, the chart separates the estimated contributions of factors such as social support, healthy life expectancy, freedom, generosity, and perceptions of corruption. The consistent use of colour across countries enables viewers to see that the same factor is represented in the same way throughout the chart. This supports comparison of both the total score and its components. The visualization therefore follows the useful principle of presenting an overview first and then allowing the audience to examine details.
 
-    **The fourth reason** is that the chart uses a restrained and focused design. It avoids decorative three-dimensional effects, unnecessary icons, and excessive text. Most of the visual space is devoted to the data itself, which improves the data-to-ink ratio and reduces distraction. The ranking structure creates a clear narrative: countries differ in their reported happiness, and those differences are associated with several measurable factors.
-
-    - How could this data visualization have been improved?  
-
-    Despite these strengths, the visualization could still be improved. **The first improvement** would be to use a colour-blind-safe palette, stronger contrast, direct labels, or patterns because some colours are light or visually similar. **The second improvement** would be to add a complementary dot plot, heatmap, or small-multiple chart because stacked segments that do not begin at the same baseline are difficult to compare precisely across countries. **The third improvement** would be to provide an accessible data table for users who rely on screen readers or need exact values.
+**The fourth reason** is that the chart uses a restrained and focused design. It avoids decorative three-dimensional effects, unnecessary icons, and excessive text. Most of the visual space is devoted to the data itself, which improves the data-to-ink ratio and reduces distraction. The ranking structure creates a clear narrative: countries differ in their reported happiness, and those differences are associated with several measurable factors.
+```
+<br>
+- How could this data visualization have been improved?
+  
+```
+Despite these strengths, the visualization could still be improved. **The first improvement** would be to use a colour-blind-safe palette, stronger contrast, direct labels, or patterns because some colours are light or visually similar. **The second improvement** would be to add a complementary dot plot, heatmap, or small-multiple chart because stacked segments that do not begin at the same baseline are difficult to compare precisely across countries. **The third improvement** would be to provide an accessible data table for users who rely on screen readers or need exact values.
+```
+<br><br>
 
 **Bad visualization**
 *[World Happiness Report](https://public.tableau.com/app/profile/sara.hamdoun4060/viz/WorldHappinessReport_15657272841480/WorldHappinessReport), created by Sara Hamdoun on Tableau Public.*
       
-      ```
-    I classify this visualization as ineffective for communicating an overview of country differences. It places 20 countries in rows, shows their ranks for happiness and six related indicators in separate vertical columns, and connects each country’s ranks across the columns.
+```
+I classify this visualization as ineffective for communicating an overview of country differences. It places 20 countries in rows, shows their ranks for happiness and six related indicators in separate vertical columns, and connects each country’s ranks across the columns.
 
-    **The first reason** is that the many crossing lines produce a “spaghetti” effect. A viewer must trace one thin line through several intersections to follow a country, which demands sustained attention and creates unnecessary cognitive load. The repeated circles and lines have almost equal visual weight, so there is no clear focal point or narrative. Parallel-coordinate displays can be useful for interactive exploration of a few highlighted cases, but displaying all countries equally makes both comparison and pattern detection difficult.
+**The first reason** is that the many crossing lines produce a “spaghetti” effect. A viewer must trace one thin line through several intersections to follow a country, which demands sustained attention and creates unnecessary cognitive load. The repeated circles and lines have almost equal visual weight, so there is no clear focal point or narrative. Parallel-coordinate displays can be useful for interactive exploration of a few highlighted cases, but displaying all countries equally makes both comparison and pattern detection difficult.
 
-    **The second reason** is that the chart encodes rank rather than the underlying values. Rank removes information about magnitude: a one-rank difference may represent either a very small or a large difference in the original measure. It also makes relationships across indicators harder to interpret because the viewer cannot tell whether changes between columns are substantively meaningful. The visualization therefore gives a strong impression of movement while withholding the scale needed to evaluate it.
+**The second reason** is that the chart encodes rank rather than the underlying values. Rank removes information about magnitude: a one-rank difference may represent either a very small or a large difference in the original measure. It also makes relationships across indicators harder to interpret because the viewer cannot tell whether changes between columns are substantively meaningful. The visualization therefore gives a strong impression of movement while withholding the scale needed to evaluate it.
 
-    **The third reason** is that the chosen encodings do not support accurate comparison. Although each column has a common vertical order, the viewer is mainly asked to interpret slopes, crossings, and line paths rather than straightforward position or length. Research on graphical perception shows that aligned position and length are generally decoded more accurately than less direct encodings.
+**The third reason** is that the chosen encodings do not support accurate comparison. Although each column has a common vertical order, the viewer is mainly asked to interpret slopes, crossings, and line paths rather than straightforward position or length. Research on graphical perception shows that aligned position and length are generally decoded more accurately than less direct encodings.
 
-    **The fourth reason** is that accessibility is limited. The labels and connecting lines are small and low contrast, and hover-based identification would disadvantage users who cannot use a pointer or distinguish fine marks.
+**The fourth reason** is that accessibility is limited. The labels and connecting lines are small and low contrast, and hover-based identification would disadvantage users who cannot use a pointer or distinguish fine marks.
+```
+<br>
 
-      ```
-    - How could this data visualization have been improved? 
+- How could this data visualization have been improved?
+```
+**The first improvement** would be to replace this display with a heatmap or a set of aligned dot plots. Countries could remain in rows, sorted by overall happiness, while each indicator is shown in a separate aligned column. Using actual scores—or clearly labelled standardized scores—would retain magnitude. **The second improvement** would be to use a restrained, colour-blind-safe palette and add text labels or symbols as redundant encodings. **The third improvement**, if the parallel-coordinate form were retained, would be to show only a few selected countries by default, fade the other lines, directly label the selected countries, and provide an accessible table and a concise explanation of the measures and source.
 
-      ```
-    **The first improvement** would be to replace this display with a heatmap or a set of aligned dot plots. Countries could remain in rows, sorted by overall happiness, while each indicator is shown in a separate aligned column. Using actual scores—or clearly labelled standardized scores—would retain magnitude. **The second improvement** would be to use a restrained, colour-blind-safe palette and add text labels or symbols as redundant encodings. **The third improvement**, if the parallel-coordinate form were retained, would be to show only a few selected countries by default, fade the other lines, directly label the selected countries, and provide an accessible table and a concise explanation of the measures and source.
-
-      ```    
+```    
+<br><br>
 
 - Word count should not exceed (as a maximum) 500 words for each visualization (i.e. 
 300 words for your good example and 500 for your bad example)
