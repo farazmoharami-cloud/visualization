@@ -13,7 +13,6 @@
 **Good visualization**
 *[Official World Happiness Report 2021 Ranking](https://public.tableau.com/app/profile/worldhappinessreport/viz/Figure2_1_16157724652500/2021WorldHappinessReport), published on the World Happiness Report’s Tableau Public profile.*
 
-      ```
     I classify this as a good visualization because its design makes the main message clear while still allowing the viewer to explore additional detail.
 
     **The first reason** is its clear organization and accurate visual encoding. The chart presents countries as horizontal stacked bars, ordered from the highest to the lowest life-evaluation score. This ordering immediately communicates the ranking and allows the viewer to identify the highest- and lowest-scoring countries without needing to read every number. Because the bars share a common baseline, their total lengths can be compared accurately. Research on graphical perception shows that viewers generally compare position and length more accurately than area, angle, or volume, which supports the effectiveness of this design (Cleveland & McGill, 1984; Heer & Bostock, 2010).
@@ -24,13 +23,10 @@
 
     **The fourth reason** is that the chart uses a restrained and focused design. It avoids decorative three-dimensional effects, unnecessary icons, and excessive text. Most of the visual space is devoted to the data itself, which improves the data-to-ink ratio and reduces distraction. The ranking structure creates a clear narrative: countries differ in their reported happiness, and those differences are associated with several measurable factors.
 
-      ```
     - How could this data visualization have been improved?  
 
-      ```
     Despite these strengths, the visualization could still be improved. **The first improvement** would be to use a colour-blind-safe palette, stronger contrast, direct labels, or patterns because some colours are light or visually similar. **The second improvement** would be to add a complementary dot plot, heatmap, or small-multiple chart because stacked segments that do not begin at the same baseline are difficult to compare precisely across countries. **The third improvement** would be to provide an accessible data table for users who rely on screen readers or need exact values.
 
-      ```
 **Bad visualization**
 *[World Happiness Report](https://public.tableau.com/app/profile/sara.hamdoun4060/viz/WorldHappinessReport_15657272841480/WorldHappinessReport), created by Sara Hamdoun on Tableau Public.*
       
