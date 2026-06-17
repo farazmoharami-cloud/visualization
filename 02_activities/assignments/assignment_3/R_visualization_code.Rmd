@@ -1,6 +1,5 @@
 ---
 title: "Assignment 3 - R Markdown Visualization"
-output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -22,9 +21,11 @@ local_csv <- "data/comparative_birth_death_marriage_data_1925-2025.csv"
 dir.create("data", showWarnings = FALSE)
 dir.create("outputs", showWarnings = FALSE)
 
+# Keep a local copy of the raw CSV so the dataset used 
 download.file(data_url, local_csv, mode = "wb", quiet = TRUE)
 raw <- read.csv(local_csv, check.names = FALSE)
 
+# Match columns by keyword so the code still works with bilingual column names.
 find_col <- function(keyword) {
   matches <- names(raw)[grepl(keyword, names(raw), ignore.case = TRUE)]
   if (length(matches) == 0) stop(paste("No column contains", keyword))
@@ -46,6 +47,8 @@ last_year <- 2023
 row_first <- raw[raw[[year_col]] == first_year, c(birth_col, death_col, marriage_col)]
 row_last <- raw[raw[[year_col]] == last_year, c(birth_col, death_col, marriage_col)]
 
+# Build one row per event type and calculate the percent change between the two
+# selected years.
 plot_data <- data.frame(
   event = c("Live births", "Deaths", "Marriages"),
   value_1994 = as.numeric(gsub(",", "", c(row_first[[birth_col]], row_first[[death_col]], row_first[[marriage_col]]))),
@@ -58,6 +61,7 @@ plot_data
 ```
 
 ```{r}
+# Each horizontal line connects the 1994 value to the 2023 value for one event.
 r_plot <- ggplot(plot_data, aes(y = event)) +
   geom_segment(aes(x = value_1994, xend = value_2023, yend = event), colour = "#b9c0b3", linewidth = 2.8) +
   geom_point(aes(x = value_1994, colour = "1994"), size = 4.4) +
