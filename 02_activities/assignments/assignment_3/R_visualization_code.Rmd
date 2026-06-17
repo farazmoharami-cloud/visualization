@@ -1,0 +1,109 @@
+---
+title: "Assignment 3 - R Markdown Visualization"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+## Dataset
+
+Dataset: Comparative Birth, Death, Marriage data, Ontario Data Catalogue.
+
+This R Markdown file downloads the official Ontario CSV and uses `ggplot2` to create the visualization. The plotting table is derived in code; no manually prepared summary table is used.
+
+```{r}
+library(ggplot2)
+
+data_url <- "https://data.ontario.ca/dataset/7d6d02f8-140f-467d-a7c1-861480cadb6d/resource/8f40d667-b379-41c6-b929-cdcce6e0ada7/download/comparative_birth_death_marriage_data_1925-2025.csv"
+local_csv <- "data/comparative_birth_death_marriage_data_1925-2025.csv"
+
+dir.create("data", showWarnings = FALSE)
+dir.create("outputs", showWarnings = FALSE)
+
+# Keep a local copy of the raw CSV so the dataset used 
+download.file(data_url, local_csv, mode = "wb", quiet = TRUE)
+raw <- read.csv(local_csv, check.names = FALSE)
+
+# Match columns by keyword so the code still works with bilingual column names.
+find_col <- function(keyword) {
+  matches <- names(raw)[grepl(keyword, names(raw), ignore.case = TRUE)]
+  if (length(matches) == 0) stop(paste("No column contains", keyword))
+  matches[1]
+}
+
+year_col <- find_col("Year")
+birth_col <- find_col("Live Births")
+death_col <- find_col("Deaths")
+marriage_col <- find_col("Marriages")
+
+first_year <- 1994
+
+# 2024 and 2025 are deliberately excluded because the Ontario catalogue labels
+# them preliminary. The catalogue says 2023 is the most current published annual
+# report year, so 2023 is the latest complete/final year used in the charts.
+last_year <- 2023
+
+row_first <- raw[raw[[year_col]] == first_year, c(birth_col, death_col, marriage_col)]
+row_last <- raw[raw[[year_col]] == last_year, c(birth_col, death_col, marriage_col)]
+
+# Build one row per event type and calculate the percent change between the two
+# selected years.
+plot_data <- data.frame(
+  event = c("Live births", "Deaths", "Marriages"),
+  value_1994 = as.numeric(gsub(",", "", c(row_first[[birth_col]], row_first[[death_col]], row_first[[marriage_col]]))),
+  value_2023 = as.numeric(gsub(",", "", c(row_last[[birth_col]], row_last[[death_col]], row_last[[marriage_col]])))
+)
+plot_data$change_pct <- (plot_data$value_2023 - plot_data$value_1994) / plot_data$value_1994 * 100
+plot_data$change_label <- paste0(ifelse(plot_data$change_pct >= 0, "+", ""), round(plot_data$change_pct), "%")
+plot_data$event <- factor(plot_data$event, levels = c("Live births", "Deaths", "Marriages"))
+plot_data
+```
+
+```{r}
+# Each horizontal line connects the 1994 value to the 2023 value for one event.
+r_plot <- ggplot(plot_data, aes(y = event)) +
+  geom_segment(aes(x = value_1994, xend = value_2023, yend = event), colour = "#b9c0b3", linewidth = 2.8) +
+  geom_point(aes(x = value_1994, colour = "1994"), size = 4.4) +
+  geom_point(aes(x = value_2023, colour = "2023"), size = 4.4) +
+  geom_text(
+    aes(x = pmax(value_1994, value_2023) + 6500, label = change_label),
+    colour = "#202124",
+    fontface = "bold",
+    size = 4.3,
+    hjust = 0
+  ) +
+  scale_colour_manual(values = c("1994" = "#666666", "2023" = "#2b7bba"), name = NULL) +
+  scale_x_continuous(labels = function(x) paste0(round(x / 1000), "K"), expand = expansion(mult = c(0.03, 0.17))) +
+  labs(
+    title = "How Ontario Vital Event Registrations Changed",
+    subtitle = "1994 vs 2023, with percent change labelled for each event type.",
+    x = "Registered events",
+    y = NULL,
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(
+    plot.background = element_rect(fill = "#fbfbf8", colour = NA),
+    panel.background = element_rect(fill = "#fbfbf8", colour = NA),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = "bold", size = 18),
+    plot.subtitle = element_text(colour = "#5f6368"),
+    plot.caption = element_text(colour = "#5f6368", hjust = 0),
+    legend.position = "top",
+    legend.justification = "right",
+    axis.text = element_text(colour = "#202124"),
+    axis.title = element_text(colour = "#202124")
+  )
+
+r_plot
+
+ggsave(
+  filename = "outputs/visualization_2_r_1994_2023_change.png",
+  plot = r_plot,
+  width = 10,
+  height = 6,
+  dpi = 150,
+  bg = "#fbfbf8"
+)
+```
